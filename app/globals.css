@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f5f6f3;
+  --surface: #ffffff;
+  --foreground: #1b231f;
+  --muted: #6b7280;
+  --border: #e5e7eb;
+  --brand: #1f6f4a;
+  --brand-soft: #e7f3ec;
+  --status-done: #2563eb;
+  --status-ontrack: #16a34a;
+  --status-hold: #d97706;
+  --status-delayed: #dc2626;
+  --font-sans-kr: "Pretendard Variable", Pretendard, -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans-kr);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.badge-done { background: #dbeafe; color: var(--status-done); }
+.badge-on_track { background: #dcfce7; color: var(--status-ontrack); }
+.badge-hold { background: #fef3c7; color: var(--status-hold); }
+.badge-delayed { background: #fee2e2; color: var(--status-delayed); }
