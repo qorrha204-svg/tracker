@@ -48,3 +48,21 @@ body {
 .badge-on_track { background: #dcfce7; color: var(--status-ontrack); }
 .badge-hold { background: #fef3c7; color: var(--status-hold); }
 .badge-delayed { background: #fee2e2; color: var(--status-delayed); }
+
+@media print {
+  .app-header,
+  .print-hide {
+    display: none !important;
+  }
+  body {
+    background: white;
+  }
+  .app-shell-main {
+    max-width: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  .card {
+    break-inside: avoid;
+  }
+}

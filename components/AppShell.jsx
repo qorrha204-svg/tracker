@@ -17,6 +17,7 @@ export default function AppShell({ profile, children }) {
   return (
     <div style={{ minHeight: "100dvh", display: "flex", flexDirection: "column" }}>
       <header
+        className="app-header"
         style={{
           display: "flex",
           alignItems: "center",
@@ -79,7 +80,9 @@ export default function AppShell({ profile, children }) {
         </div>
       </header>
 
-      <main style={{ flex: 1, padding: 24, maxWidth: 1200, width: "100%", margin: "0 auto" }}>{children}</main>
+      <main className="app-shell-main" style={{ flex: 1, padding: 24, maxWidth: 1200, width: "100%", margin: "0 auto" }}>
+        {children}
+      </main>
     </div>
   );
 }

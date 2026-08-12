@@ -151,7 +151,7 @@ export default function TaskBoard({ initialTasks, profile }) {
 
       <div style={{ display: "flex", gap: 8, alignItems: "center", flexWrap: "wrap" }}>
         <button onClick={() => setDecisionOnly((d) => !d)} style={decisionChipStyle(decisionOnly)}>
-          {decisionOnly ? "의사결정 필요만 ✕" : "의사결정 필요만"}
+          {decisionOnly ? "의사결정 필요 ✕" : "의사결정 필요"}
         </button>
         <select value={boardFilter} onChange={(e) => setBoardFilter(e.target.value)} style={selectStyle}>
           <option value="all">전체 유형</option>

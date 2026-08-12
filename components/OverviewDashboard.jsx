@@ -1,11 +1,11 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import Link from "next/link";
 import StatCards from "@/components/StatCards";
-import StatusBadge from "@/components/StatusBadge";
 import TaskDrawer from "@/components/TaskDrawer";
+import DecisionCards from "@/components/DecisionCards";
 import { StatusDonut, BusinessUnitProgress } from "@/components/OverviewCharts";
-import { BOARD_LABEL } from "@/lib/constants";
 import { canEditTask, isAdminLevel } from "@/lib/permissions";
 
 export default function OverviewDashboard({ initialTasks, profile }) {
@@ -54,36 +54,13 @@ export default function OverviewDashboard({ initialTasks, profile }) {
       </div>
 
       <div className="card" style={{ padding: 16 }}>
-        <h2 style={{ fontSize: 14, fontWeight: 700, marginBottom: 12 }}>대표 의사결정 필요 항목 ({decisionTasks.length})</h2>
-        {decisionTasks.length === 0 ? (
-          <p style={{ fontSize: 13, color: "var(--muted)" }}>현재 의사결정 대기 중인 과제가 없습니다.</p>
-        ) : (
-          <ul style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-            {decisionTasks.map((t) => (
-              <li key={t.id} style={{ borderBottom: "1px solid var(--border)", paddingBottom: 10 }}>
-                <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
-                  <button onClick={() => setSelectedTask(t)} style={taskLinkStyle}>
-                    {t.title}
-                  </button>
-                  <StatusBadge status={t.status} />
-                  <span style={{ fontSize: 12, color: "var(--muted)" }}>
-                    {t.business_unit} · {BOARD_LABEL[t.board]} · {t.owner_dept}
-                  </span>
-                </div>
-                <p style={{ fontSize: 13, marginTop: 4 }}>
-                  <strong style={{ color: "var(--status-hold)" }}>Flag: </strong>
-                  {t.decision_risk_flag}
-                </p>
-                {t.ceo_comment && (
-                  <p style={{ fontSize: 13, marginTop: 2, color: "var(--muted)" }}>
-                    <strong>CEO Comment: </strong>
-                    {t.ceo_comment}
-                  </p>
-                )}
-              </li>
-            ))}
-          </ul>
-        )}
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 12, flexWrap: "wrap", gap: 8 }}>
+          <h2 style={{ fontSize: 14, fontWeight: 700 }}>대표이사 의사결정 ({decisionTasks.length})</h2>
+          <Link href="/report" style={reportLinkStyle}>
+            📄 대표이사 보고용 리포트 PDF 출력
+          </Link>
+        </div>
+        <DecisionCards tasks={decisionTasks} onOpenTask={setSelectedTask} />
       </div>
 
       {selectedTask && (
@@ -100,14 +77,10 @@ export default function OverviewDashboard({ initialTasks, profile }) {
   );
 }
 
-const taskLinkStyle = {
+const reportLinkStyle = {
+  fontSize: 13,
   fontWeight: 600,
-  fontSize: 14,
-  border: "none",
-  background: "none",
-  padding: 0,
-  cursor: "pointer",
-  color: "var(--foreground)",
-  textDecoration: "underline",
-  textDecorationColor: "var(--border)",
+  color: "var(--brand)",
+  textDecoration: "none",
+  whiteSpace: "nowrap",
 };

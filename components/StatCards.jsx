@@ -5,7 +5,7 @@ const CARD_DEFS = [
   { key: "on_track", label: "진행중", href: "/tasks?view=table&status=on_track" },
   { key: "done", label: "완료", href: "/tasks?view=table&status=done" },
   { key: "hold", label: "보류", href: "/tasks?view=table&status=hold" },
-  { key: "decisionNeeded", label: "대표 의사결정 필요", href: "/tasks?view=table&decision=1", highlight: true },
+  { key: "decisionNeeded", label: "대표이사 의사결정", href: "/tasks?view=table&decision=1", highlight: true },
 ];
 
 export default function StatCards({ stats }) {
