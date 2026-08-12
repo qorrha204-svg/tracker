@@ -229,14 +229,6 @@ export default function TaskDrawer({ task, canEdit, canEditCeoComment, onClose, 
           <TextField label="CEO Comment" value={form.ceo_comment} canEdit={canEditCeoComment} onChange={(v) => set("ceo_comment", v)} />
         )}
 
-        {error && <p style={{ color: "var(--status-delayed)", fontSize: 13, marginTop: 8 }}>{error}</p>}
-
-        {canEdit && (
-          <button onClick={handleSave} disabled={saving} style={saveButtonStyle}>
-            {saving ? "저장 중..." : isNew ? "등록" : "저장"}
-          </button>
-        )}
-
         {!isNew && (
         <div style={{ marginTop: 24, borderTop: "1px solid var(--border)", paddingTop: 16 }}>
           <h3 style={{ fontSize: 14, fontWeight: 700, marginBottom: 8 }}>업무 진행이력</h3>
@@ -271,6 +263,15 @@ export default function TaskDrawer({ task, canEdit, canEditCeoComment, onClose, 
         </div>
         )}
         </div>
+
+        {canEdit && (
+          <div style={footerStyle}>
+            <p style={{ flex: 1, color: "var(--status-delayed)", fontSize: 13, margin: 0 }}>{error}</p>
+            <button onClick={handleSave} disabled={saving} style={{ ...saveButtonStyle, marginTop: 0, flexShrink: 0 }}>
+              {saving ? "저장 중..." : isNew ? "등록" : "저장"}
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
@@ -353,6 +354,16 @@ const bodyStyle = {
   flex: 1,
   overflowY: "auto",
   padding: "16px 28px 28px",
+};
+
+const footerStyle = {
+  flexShrink: 0,
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "space-between",
+  gap: 12,
+  padding: "16px 28px",
+  borderTop: "1px solid var(--border)",
 };
 
 const saveButtonStyle = {
